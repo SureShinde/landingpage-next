@@ -1,0 +1,75 @@
+$magenta_old: #dc2a4c;
+$magenta_younger: #dc254f;
+$magenta_middle: #db0b5f;
+$magenta_young: #db0b60;
+$white_normal: #fffae6;
+$yellow: #ffc800;
+$blue_eggsalt: #74ccc4;
+
+// fonts loader
+// FONT FAMILY
+$font_idx: 1;
+$font_default: Helvetica, Arial, sans-serif !default;
+
+// Font Family Ex. (name, 'fonts/path')
+$font_family: (
+  OpenSans-Regular: "/assets/fonts/OpenSans/OpenSans-Regular",
+  OpenSans-Bold: "/assets/fonts/OpenSans/OpenSans-Bold",
+  OpenSans-BoldItalic: "/assets/fonts/OpenSans/OpenSans-BoldItalic",
+  OpenSans-ExtraBold: "/assets/fonts/OpenSans/OpenSans-ExtraBold",
+  OpenSans-ExtraBoldItalic: "/assets/fonts/OpenSans/OpenSans-ExtraBoldItalic",
+  OpenSans-Italic: "/assets/fonts/OpenSans/OpenSans-Italic",
+  OpenSans-Light: "/assets/fonts/OpenSans/OpenSans-Light",
+  OpenSans-LightItalic: "/assets/fonts/OpenSans/OpenSans-LightItalic",
+  OpenSans-SemiBold: "/assets/fonts/OpenSans/OpenSans-SemiBold",
+  OpenSans-SemiBoldItalic: "/assets/fonts/OpenSans/OpenSans-SemiBoldItalic",
+  HouseSlant-Regular: "/assets/fonts/HouseSlant/HouseSlant-Regular",
+);
+
+// media-query
+$media-query: (
+    laptop,
+    (
+      min-width: 1366px,
+    )
+  ),
+  (
+    wide-screen,
+    (
+      min-width: 1440px,
+    )
+  ),
+  (
+    desktop,
+    (
+      min-width: 1200px,
+    )
+  ),
+  (
+    wide,
+    (
+      min-width: 992px,
+    )
+  ),
+  (
+    tablet,
+    (
+        min-width: 768px,
+      )
+      and
+      (
+        max-width: 991px,
+      )
+  ),
+  (
+    mobile,
+    (
+      max-width: 767px,
+    )
+  ),
+  (
+    small-mobile,
+    (
+      max-width: 360px,
+    )
+  );

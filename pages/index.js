@@ -1,66 +1,305 @@
+import React, { useState } from "react"
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import main from "../styles/index.module.scss"
+import Layout from "../components/Layout/";
+import Section from "../components/Section/index";
+import Heading from "../components/HeadingText/index";
+import { colors, clipPaths, theme } from "../theme/index";
+import Description from "../components/DescriptionText";
+import Button from "../components/Button/index";
+import Divider from "../components/Divider/index";
+import Image from "next/image";
+import { Flex, Box } from "reflexbox";
+import TextField from "@material-ui/core/TextField";
+import { Container } from "@material-ui/core";
 
 export default function Home() {
+  const { triangle, normal, parallelogram } = clipPaths;
+  const [fullname, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const submitData = e => {
+    e.preventDefault();
+    const users = [{
+      fullname,
+      email,
+      message
+    }];
+
+    let data = JSON.parse(localStorage.getItem("users"));
+    if (!data) {
+      localStorage.setItem("users", JSON.stringify(users));
+    } else {
+      data = [...data, ...users];
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  }
   return (
-    <div className={styles.container, main.background}>
+    <React.Fragment>
       <Head>
-        <title>Create Next App</title>
+        <title>Homepage</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Layout>
+        <Section
+          color={colors.yellow}
+          clipPath={triangle} height={100}
+          imgSrc="/assets/images/banner.webp"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+          <Divider position="absolute" right="10%" bottom="45%" width="27%">
+            <Heading color={colors.magentaOld} fontSize={5} align="center">
+              Welcome To My Portofolio
+            </Heading>
+            <Description color={colors.magentaOld} fontSize={1} margin="0 0 1rem">
+              Lorem ipsum dolor sit amet, consectetur
+              elit, sed do eiusmod tempor incididunt
+            </Description>
+            <Button text="READ MORE" padding={10} fontSize={16} borderRadius="20px" />
+          </Divider>
+        </Section>
+        <Section bottom="-8rem">
+          <Container>
+            <Flex>
+              <Box mr={5} style={{ zIndex: 3 }}>
+                <Image
+                  src="/assets/images/me.webp"
+                  alt="Picture of the author"
+                  width={450}
+                  height={500}
+                />
+              </Box>
+              <Box>
+                <Flex>
+                  <Box >
+                    <Divider display="inline">
+                      <h3>Who I Am</h3>
+                    </Divider>
+                    <Divider display="inline">
+                      <Description color={colors.blue} align="left">
+                        My Name is Arya Wirasandi
+                      </Description>
+                      <Description color={colors.black} align="left" margin="1rem 0 0 0 ">
+                        Iam a software developer (Front End) at PT Ako Media Asia, love to learning new things in technology especially front end
+                      </Description>
+                    </Divider>
+                    <Button text="Download My CV" color={colors.whiteNormal} padding={15} fontSize={12} margin="1rem 0 0 0" backgroundColor={colors.magentaOld} />
+                  </Box>
+                </Flex>
+              </Box>
+            </Flex>
+          </Container>
+        </Section>
+        <Section height={160} color={colors.blueEggSalt} clipPath={parallelogram} margin="0 0 8rem 0">
+          <Divider
+            position="absolute"
+            bottom="20%"
+            right="10%"
+          >
+            <Flex justifyContent="center">
+              <Box
+
+                textAlign="center"
+                mr={1}
+              >
+                <Image
+                  src="/assets/images/portfolio/portfolioOne.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio One"
+                />
+                <Heading color={colors.magentaOld}>XL Home</Heading>
+                <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24} width={60}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+              </Description>
+                <Button text="READ MORE" padding={10} fontSize={12} borderRadius="20px" margin="1rem 0 0 0" />
+              </Box>
+              <Box
+
+                textAlign="center"
+                mr={1}
+              >
+                <Image
+                  src="/assets/images/portfolio/portfolioTwo.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio Two"
+                />
+                <Heading color={colors.magentaOld}>Nutriclub Static Site</Heading>
+                <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24} width={60}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+              </Description>
+                <Button text="READ MORE" padding={10} fontSize={12} borderRadius="20px" margin="1rem 0 0 0" />
+              </Box>
+              <Box
+
+                textAlign="center"
+                mr={1}
+              >
+                <Image
+                  src="/assets/images/portfolio/portfolioThree.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio Three"
+                />
+                <Heading color={colors.magentaOld}>Nutriclub</Heading>
+                <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24} width={60}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+              </Description>
+                <Button text="READ MORE" padding={10} fontSize={12} borderRadius="20px" margin="1rem 0 0 0" />
+              </Box>
+            </Flex>
+          </Divider>
+        </Section>
+        <Section>
+
+        </Section>
+        <Section
+          height={50}
+          color={colors.whiteNormal}
+        >
+          <Divider
+            position="absolute"
+            bottom="100%"
+            right="23%"
+          >
+            <Flex justifyContent="center">
+              <Box
+                alignContent="center"
+              >
+                <Image
+                  src="/assets/images/portfolio/portfolioOne.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio One"
+                />
+              </Box>
+              <Box>
+                <Image
+                  src="/assets/images/portfolio/portfolioTwo.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio Two"
+                />
+              </Box>
+              <Box>
+                <Image
+                  src="/assets/images/portfolio/portfolioThree.svg"
+                  width={250}
+                  height={250}
+                  alt="Portfolio Three"
+                />
+              </Box>
+            </Flex>
+          </Divider>
+          <Divider marginTop={64}>
+            <Heading color={colors.magentaOld} fontSize={3} align="center" margin="1rem 0">
+              what you can find
+            </Heading>
+          </Divider>
+          <Flex
+            justifyContent="center"
+          >
+            <Box width={1 / 3} mr={3}>
+              <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+              </Description>
+            </Box>
+            <Box width={1 / 3}>
+              <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip.
+              </Description>
+            </Box>
+          </Flex>
+          <Divider marginTop={24}>
+            <Button text="MORE INFO" padding={10} fontSize={16} borderRadius="20px" color={colors.whiteNormal} backgroundColor={colors.magentaOld} width={20} />
+          </Divider>
+        </Section>
+        <Section
+          color={colors.yellow}
+          clipPath={triangle} height={100}
+          imgSrc="/assets/images/banner-two.webp"
+        >
+        </Section>
+        <Section
+          color={colors.whiteNormal}
+          clipPaths={normal}
+        >
+          <Divider marginTop={64}>
+            <Heading color={colors.magentaOld} fontSize={3} align="center" margin="1rem 0">
+              Get to Know Us
+            </Heading>
+          </Divider>
+          <Flex
+            justifyContent="center"
+          >
+            <Box width={1 / 3} mr={3}>
+              <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+
+                Aut odit aut fugit, sed quia consequuntur magni dolores eos
+                qui ratione voluptatem sequi nesciunt. Neque poromet
+              </Description>
+            </Box>
+            <Box width={1 / 3}>
+              <Description color={colors.magentaOld} fontSize={1} align="justify" lineHeight={24}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex quia voluptas sit aspernatur
+
+                Aut odit aut fugit, sed quia consequuntur magni dolores eos
+                qui ratione voluptatem sequi nesciunt. Neque poromet
+              </Description>
+            </Box>
+          </Flex>
+          <Divider marginTop={24}>
+            <Button text="MORE INFO" padding={10} fontSize={16} borderRadius="20px" color={colors.whiteNormal} backgroundColor={colors.magentaOld} width={20} />
+          </Divider>
+        </Section>
+        <Section height={150} color={colors.blueEggSalt} clipPath={parallelogram}>
+          <Divider position="absolute" top="30%" left="10%">
+            <Heading color={colors.whiteNormal} fontSize={2} fontFamily="OpenSans-Regular" align="start">
+              Let's Talk
+            </Heading>
+            <Flex>
+              <Box mr={5}>
+                <form onSubmit={submitData}>
+                  <Flex mt={4}>
+                    <Box mr={5}>
+                      <TextField value={fullname} placeholder="Full Name" onChange={e => setFullName(e.target.value)} />
+                    </Box>
+                    <Box mr={2}>
+                      <TextField value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
+                    </Box>
+                  </Flex>
+                  <Flex mt={5}>
+                    <TextField value={message} placeholder="Message" fullWidth mt={5} onChange={e => setMessage(e.target.value)} />
+                  </Flex>
+                  <Button text="Save Data" padding={15} color={colors.blue} margin="1rem 0 0 0 " backgroundColor={colors.whiteNormal} />
+                </form>
+              </Box>
+            </Flex>
+          </Divider>
+        </Section>
+      </Layout>
+    </React.Fragment >
   )
 }
