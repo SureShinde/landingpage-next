@@ -1,14 +1,23 @@
 import React from "react";
 import Header from "../Header/index";
+import Main from "./index.styled";
+import Footer from "../Footer/index";
 const Layout = ({ children }) => {
+    const [scroll, setScroll] = React.useState(0);
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", function () {
+            setScroll(this.scrollY);
+        })
+    }, [scroll]);
     return (
         <React.Fragment>
-            <Header />
-            <main>
+            <Header scroll={scroll} />
+            <Main>
                 {children}
-            </main>
+            </Main>
             <footer>
-                this is where footer is
+                <Footer />
             </footer>
         </React.Fragment>
     )

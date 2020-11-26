@@ -8,7 +8,7 @@
     font-family: $name;
     src: url("#{$file}.eot");
     src: local($name), url("#{$file}.eot") format("embedded-opentype"),
-      url("#{$file}.woff2") format("woff2"), url("#{$file}.woff") format("woff"),
+      // url("#{$file}.woff2") format("woff2"), url("#{$file}.woff") format("woff"),
       url("#{$file}.ttf") format("truetype"),
       url("#{$file}.svg#FuturaStdLight") format("svg");
     font-display: auto;
