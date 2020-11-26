@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors } from "../../theme/index";
-import { breakpoint } from "../../helper/breakpoint/index";
 const Section = styled.section`
     padding : 0 10px;
     min-height : ${props => props.height ? `${props.height}vh` : "auto"};

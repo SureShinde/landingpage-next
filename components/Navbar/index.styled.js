@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { breakpoint } from "../../helper/breakpoint/";
-import { animated } from "react-spring"
-const Navbar = styled(animated.nav)`
+const Navbar = styled.nav`
     width: 100%;
     ${breakpoint.md`
         display : block;
