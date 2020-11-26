@@ -13,12 +13,11 @@ export const breakpoint = Object.keys(breakpoints).reduce(
     (accumulator, label) => {
         accumulator[label] = (...args) => css`
             @media (min-width : ${breakpoints[label]}){
-                ${
-                    css(...args)
-                }
+                ${css(...args)
+            }
             }
         `;
         return accumulator;
     },
-{}
+    {}
 );

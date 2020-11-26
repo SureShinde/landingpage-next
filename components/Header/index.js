@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../Navbar/index"
-const Header = () => {
+const Header = ({ scroll }) => {
     return (
         <header>
-            <Navbar />
+            <Navbar scroll={scroll} />
         </header>
     )
 }

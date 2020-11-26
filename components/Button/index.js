@@ -1,30 +1,32 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-
+import { colors } from "../../theme/";
 const Button = styled.button`
-    font-size : 1rem;
-    margin : 1em;
-    padding : 0.50em 1em;
+    font-size : ${props => props.fontSize}px;
+    margin : 0 auto;
+    padding : ${props => props.padding}px;
+    position : ${props => props.position};
     border-radius : 3px;
-    color: ${props => props.theme.main};
-    border: 2px solid ${props => props.theme.main};
-    border-radius : 20px;
+    color: ${props => props.color ? props.color : colors.magentaOld};
+    border-radius : ${({ borderRadius }) => borderRadius};
+    border: none;
+    outline: none;
+    font-family : "OpenSans-ExtraBold";
+    margin : ${({ margin }) => margin ? margin : "auto"};
+    background-color :${({ backgroundColor }) => backgroundColor ? backgroundColor : "none"};
+    width : ${({ width }) => width ? width + "%" : "auto"};
 `;
 
-Button.defaultProps = {
-    theme : {
-        main : "palevioletred"
-    }
-}
-const theme = {
-    main : "mediumseagreen"
-}
 
-function ButtonComponent({themeName, text}){
+
+function ButtonComponent({ text, padding, fontSize, borderRadius, color, margin, backgroundColor, width }) {
     return (
-       <ThemeProvider theme={!themeName ? theme : themeName}>
-        <Button>{text}</Button>
-      </ThemeProvider>
+        <Button
+            padding={padding} fontSize={fontSize} borderRadius={borderRadius} color={color}
+            margin={margin}
+            backgroundColor={backgroundColor}
+            width={width}
+        > { text}</Button >
     )
 }
 

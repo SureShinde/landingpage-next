@@ -1,10 +1,13 @@
 import React from "react"
-import Container from "../Container/index"
+import Container from "../Container/index";
 import { Navbar } from "./index.styled";
-function NavbarComponent() {
+import { useSpring } from "react-spring";
+import { colors } from "../../theme/index"
+
+function NavbarComponent({ scroll }) {
     return (
         <React.Fragment>
-            <Navbar>
+            <Navbar bg={scroll > 0 ? colors.yellow : "none"}>
                 <Container>
                     <ul>
                         <li>About</li>
