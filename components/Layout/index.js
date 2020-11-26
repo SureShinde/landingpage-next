@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../Header/index";
 import Main from "./index.styled";
 import Footer from "../Footer/index";
+
 const Layout = ({ children }) => {
     const [scroll, setScroll] = React.useState(0);
 
