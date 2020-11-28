@@ -9,7 +9,7 @@ const Description = styled.p`
     line-height : ${({ lineHeight }) => lineHeight ? lineHeight + "px" : "normal"};
     width : ${props => props.width ? props.width + "%" : "auto"};
     margin : ${props => props.margin ? props.margin : "0 auto"};
-    align-self : flex-end;
+    /* align-self : flex-end; */
 `
 
 export default Description;

@@ -1,6 +1,7 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { colors } from "../../theme/";
+
 const Button = styled.button`
     font-size : ${props => props.fontSize}px;
     margin : 0 auto;
@@ -15,17 +16,20 @@ const Button = styled.button`
     margin : ${({ margin }) => margin ? margin : "auto"};
     background-color :${({ backgroundColor }) => backgroundColor ? backgroundColor : "none"};
     width : ${({ width }) => width ? width + "%" : "auto"};
+    cursor : pointer;
 `;
 
 
 
-function ButtonComponent({ text, padding, fontSize, borderRadius, color, margin, backgroundColor, width }) {
+function ButtonComponent({ text, padding, fontSize, borderRadius, color, margin, backgroundColor, width, type, onClick }) {
     return (
         <Button
             padding={padding} fontSize={fontSize} borderRadius={borderRadius} color={color}
             margin={margin}
             backgroundColor={backgroundColor}
             width={width}
+            type={type ? type : "button"}
+            onClick={onClick}
         > { text}</Button >
     )
 }

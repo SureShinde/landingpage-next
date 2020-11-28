@@ -13,12 +13,15 @@ import TextField from "@material-ui/core/TextField";
 import { Container } from "@material-ui/core";
 import { motion } from "framer-motion";
 import { Zoom, Fade, Roll, Flip } from 'react-reveal/';
-
+import Modal from "../components/Modal/index";
 export default function Home() {
   const { triangle, normal, parallelogram } = clipPaths;
   const [fullname, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState(false);
+  const [messsageStatus, setMessageStatus] = useState("");
   const submitData = e => {
     e.preventDefault();
     const users = [{
@@ -26,13 +29,33 @@ export default function Home() {
       email,
       message
     }];
-
     let data = JSON.parse(localStorage.getItem("users"));
-    if (!data) {
-      localStorage.setItem("users", JSON.stringify(users));
+    if (fullname === "") {
+      setError(true)
+      setMessageStatus("Nama harus di isi")
+      setShowModal(true);
+    } else if (email === "") {
+      setError(true)
+      setMessageStatus("Email harus di isi")
+      setShowModal(true);
+    } else if (message === "") {
+      setError(true)
+      setMessageStatus("Pesan harus di isi")
+      setShowModal(true);
     } else {
-      data = [...data, ...users];
-      localStorage.setItem("users", JSON.stringify(users));
+      setError(false)
+      if (error === false) {
+        if (!data) {
+          localStorage.setItem("users", JSON.stringify(users));
+          setMessageStatus("Data berhasil disimpan")
+          setShowModal(true);
+        } else {
+          data = [...data, ...users];
+          localStorage.setItem("users", JSON.stringify(users));
+          setMessageStatus("Pesan harus di isi");
+          setShowModal(true);
+        }
+      }
     }
   }
   return (
@@ -42,6 +65,29 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
+        {
+          showModal === true ? (<Modal>
+            <Divider>
+              <motion.div
+                initial={{
+                  y: 125
+                }}
+                animate={{ y: 0 }}
+                transition={{ type: "spring", bounce: 0.25, duration: 2 }}
+              >
+                <Divider>
+                  <Description color={colors.magentaOld} fontSize={1} margin="0 0 1rem"
+                  >
+                    {
+                      messsageStatus
+                    }
+                  </Description>
+                  <Button text="Close" padding={10} fontSize={16} borderRadius="20px" onClick={() => setShowModal(false)} />
+                </Divider>
+              </motion.div>
+            </Divider>
+          </Modal>) : ""
+        }
         <Section
           color={colors.yellow}
           clipPath={triangle} height={100}
@@ -357,7 +403,7 @@ export default function Home() {
                   <Flex mt={5}>
                     <TextField value={message} placeholder="Message" fullWidth mt={5} onChange={e => setMessage(e.target.value)} />
                   </Flex>
-                  <Button text="Save Data" padding={15} color={colors.blue} margin="1rem 0 0 0 " backgroundColor={colors.whiteNormal} />
+                  <Button type="submit" text="Save Data" padding={15} color={colors.blue} margin="1rem 0 0 0 " backgroundColor={colors.whiteNormal} />
                 </form>
               </Box>
             </Flex>
